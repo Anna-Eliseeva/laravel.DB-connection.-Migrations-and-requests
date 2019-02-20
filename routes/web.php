@@ -11,27 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-/*Создаем роутер с именем hello результат будет отображен в view с именем hello*/
-Route::get('hello', function () {
-    $tasks = [
-        'add tasks',
-        'find',
-        'riew'
-    ];
-    return view('hello', compact('tasks'));
-});
+/*Создаем путь к контроллеру*/
+Route::get('/tasks','TasksController@index');
+Route::get('/tasks{task}','TasksController@show');
 
-/*Выведем содержимое таблицы tasks*/
-Route::get('/task', function () {
-    $tasks = DB::table('tasks')->get();
+/*Выведем содержимое таблицы tasks с заданным условием*/
+/*Route::get('/task', function () {
+   $tasks = App\Task::incomplete();
     return view('tasks.index', compact('tasks'));
-});
+});*/
 
-Route::get('/task{task}', function ($id) {
+/*Route::get('/task{task}', function ($id) {
     $task = DB::table('tasks')->find($id);
     return view('tasks.show', compact('task'));
-});
+});*/
+
+
